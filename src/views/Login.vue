@@ -1,6 +1,10 @@
 <script setup>
 import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
+
+const callFormLogin = () => {
+  alert('teste')
+};
 </script>
 
 <template>
@@ -9,7 +13,7 @@ import MainButton from "@/components/MainButton/index.vue";
       <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
       <h2>Faça login para continuar</h2>
-      <MainButton class="bg-primary">Entrar</MainButton>
+      <MainButton @handleForm="callFormLogin" class="bg-primary">Entrar</MainButton>
       <MainButton class="bg-primary">Crie sua conta</MainButton>
     </div>
   </div>
