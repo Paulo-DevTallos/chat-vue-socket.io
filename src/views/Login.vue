@@ -1,15 +1,16 @@
 <script setup>
-import logo from "../../public/img/dev-chat.png";
+import logo from "/img/dev-chat.png";
+import MainButton from "@/components/MainButton/index.vue";
 </script>
 
 <template>
   <div class="container-login">
-    <div class="content">
-      <img :src="logo" alt="Logo DevChat" />
+    <div class="content text-center">
+      <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
       <h2>Faça login para continuar</h2>
-      <button>Login</button>
-      <button>Crie sua conta</button>
+      <MainButton class="bg-primary">Entrar</MainButton>
+      <MainButton class="bg-primary">Crie sua conta</MainButton>
     </div>
   </div>
 </template>
@@ -20,10 +21,6 @@ import logo from "../../public/img/dev-chat.png";
   justify-content: center;
   align-items: center;
   min-height: 100dvh;
-}
-
-.container-login .content {
-  text-align: center;
 }
 
 .container-login .content img {
@@ -49,10 +46,9 @@ import logo from "../../public/img/dev-chat.png";
   padding: 0.5rem 1rem;
   border: 0;
   border-radius: 0.5rem;
-  background-color: #004AAD;
   color: #fff;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: normal;
   cursor: pointer;
 }
 </style>
