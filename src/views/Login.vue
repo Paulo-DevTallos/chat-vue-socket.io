@@ -12,12 +12,12 @@ const showCommands = ref(true);
 
 const welcomeCommandMessageLogin = ref('Faça login para continuar');
 
-const computedProperties = computed(() => {
-  const handle = {
-    setWelcomeMessage: formRegister.value ? 'Crie sua conta para continuar' : welcomeCommandMessageLogin.value,
-  }
-  return handle;
-});
+const computedProps = {
+  setWelcomeMessage: computed(() => {
+    if (formRegister.value) welcomeCommandMessageLogin.value = 'Crie sua conta para continuar';
+    return welcomeCommandMessageLogin.value;
+  }),
+};
 
 const callFormLogin = () => {
   showForm.value = !showForm.value;
@@ -34,6 +34,8 @@ const login = (data) => {
 };
 
 const register = (data) => {
+  formLogin.value = !formLogin.value;
+  formRegister.value = !formRegister.value;
   console.log(data, 'Esses são os dados do registro');
 };
 </script>
@@ -43,7 +45,7 @@ const register = (data) => {
     <div class="content text-center" :class="{ 'height-form-register': formRegister }">
       <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
-      <h2 v-html="computedProperties.setWelcomeMessage"></h2>
+      <h2>{{ computedProps.setWelcomeMessage.value }}</h2>
       <div id="demo" v-if="showCommands" class="relative -translate-y-1/2 ...">
         <transition name="slide-fade">
           <div v-if="showForm" class="absolute w-full">
