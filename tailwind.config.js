@@ -12,7 +12,7 @@ module.exports = {
       },
       colors: {
         'primary': '#004AAD',
-      }
+      },
     },
   },
   plugins: [],
