@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
+import LoginForm from "@/components/Forms/LoginForm.vue";
 
 const showFormLogin = ref(true);
 const showCommands = ref(true);
@@ -30,36 +31,19 @@ const login = () => {
           <div v-if="showFormLogin" class="absolute w-full">
             <MainButton
               @handleForm="callFormLogin"
-              class="bg-primary"
+              class="bg-primary main-button"
             >
               Entrar
             </MainButton>
             <MainButton
             @handleForm="callFormRegister"
-              class="bg-primary"
+              class="bg-primary main-button"
             >
               Crie sua conta
             </MainButton>
           </div>
           <div v-else class="absolute">
-            <form>
-              <input
-                type="email"
-                placeholder="Digite seu E-mail"
-                class="w-full h-10 border pl-2 mb-2 rounded"
-              />
-              <input
-                type="password"
-                placeholder="Digite sua senha"
-                class="w-full h-10 border pl-2 mb-2 rounded"
-              />
-              <MainButton
-                @handleForm="login"
-                class="bg-primary"
-              >
-                Login
-              </MainButton>
-            </form>
+            <LoginForm />
           </div>
         </transition>
       </div>
@@ -68,6 +52,7 @@ const login = () => {
 </template>
 
 <style scoped>
+@import url('../assets/components/button.styles.css');
 .container-login {
   display: flex;
   justify-content: center;
@@ -96,17 +81,6 @@ const login = () => {
 .container-login .content #demo {
   position: relative;
   margin: 20px 0 120px;
-}
-
-.container-login .content #demo button {
-  margin: 1.8rem 3px 0;
-  padding: 0.5rem 1rem;
-  border: 0;
-  border-radius: 0.5rem;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: normal;
-  cursor: pointer;
 }
 
 /** add animation to change resource in home view */
