@@ -3,6 +3,7 @@ import { computed, ref } from "vue";
 import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
 import LoginForm from "@/components/Forms/LoginForm.vue";
+import RegisterForm from "@/components/Forms/RegisterForm.vue";
 
 const showForm = ref(true);
 const formLogin = ref(false);
@@ -57,12 +58,7 @@ const login = (data) => {
           </div>
           <div v-else class="absolute">
             <LoginForm v-if="formLogin" @handleSubmit="login" />
-            <form v-if="formRegister">
-              <input type="text" placeholder="Seu nome" />
-              <input type="email" placeholder="Seu email" />
-              <input type="password" placeholder="Sua senha" />
-              <button>Cadastrar</button>
-            </form>
+            <RegisterForm v-if="formRegister" />
           </div>
         </transition>
       </div>
