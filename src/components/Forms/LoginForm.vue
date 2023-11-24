@@ -1,20 +1,23 @@
 <script setup>
 import { ref } from "vue";
+import { defineEmits } from "vue";
 import MainButton from "@/components/MainButton/index.vue";
+
+const emit = defineEmits(["handleSubmit"]);
 
 const formData = ref({
   email: "",
   password: "",
 });
 
-const getDataToLogin = () => {
-  console.log(formData.value);
-}
+const handleSubmit = () => {
+  emit("handleSubmit", formData.value);
+};
 
 </script>
 
 <template>
-  <form @submit.prevent="getDataToLogin">
+  <form @submit.prevent="handleSubmit">
     <input
       type="email"
       placeholder="Digite seu E-mail"
