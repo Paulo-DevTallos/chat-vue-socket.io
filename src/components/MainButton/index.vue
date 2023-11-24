@@ -6,11 +6,10 @@ const emit = defineEmits(["handleForm"]);
 const handleForm = () => {
   emit("handleForm");
 };
-
 </script>
 
 <template>
-  <button @click="$emit('handleForm')">
+  <button @click="handleForm">
     <slot></slot>
   </button>
 </template>
