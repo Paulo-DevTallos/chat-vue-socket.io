@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundColor: {
         'primary': '#004AAD',
+        'grayslace': "#F9F9F9",
       }
     },
   },
