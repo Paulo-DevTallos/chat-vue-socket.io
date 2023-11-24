@@ -31,13 +31,13 @@ const login = (data) => {
           <div v-if="showFormLogin" class="absolute w-full">
             <MainButton
               @handleForm="callFormLogin"
-              class="bg-primary main-button"
+              class="bg-primary"
             >
               Entrar
             </MainButton>
             <MainButton
             @handleForm="callFormRegister"
-              class="bg-primary main-button"
+              class="bg-primary"
             >
               Crie sua conta
             </MainButton>
@@ -52,7 +52,6 @@ const login = (data) => {
 </template>
 
 <style scoped>
-@import url('../assets/components/button.styles.css');
 .container-login {
   display: flex;
   justify-content: center;

@@ -30,12 +30,8 @@ const handleSubmit = () => {
       v-model="formData.password"
       class="w-full h-10 border pl-2 mb-2 rounded"
     />
-    <MainButton class=" main-button bg-primary">
+    <MainButton class="bg-primary">
       Login
     </MainButton>
   </form>
 </template>
-
-<style scoped>
-@import url('../../assets/components/button.styles.css');
-</style>
