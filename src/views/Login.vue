@@ -4,15 +4,19 @@ import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
 import LoginForm from "@/components/Forms/LoginForm.vue";
 
-const showFormLogin = ref(true);
+const showForm = ref(true);
+const formLogin = ref(false);
+const formRegister = ref(false);
 const showCommands = ref(true);
 
 const callFormLogin = () => {
-  showFormLogin.value = !showFormLogin.value;
+  showForm.value = !showForm.value;
+  formLogin.value = !formLogin.value;
 };
 
 const callFormRegister = () => {
-  alert('Chamou o form de registro');
+  showForm.value = !showForm.value;
+  formRegister.value = !formRegister.value;
 };
 
 const login = (data) => {
@@ -28,7 +32,7 @@ const login = (data) => {
       <h2>Faça login para continuar</h2>
       <div id="demo" v-if="showCommands" class="relative -translate-y-1/2 ...">
         <transition name="slide-fade">
-          <div v-if="showFormLogin" class="absolute w-full">
+          <div v-if="showForm" class="absolute w-full">
             <MainButton
               @handleForm="callFormLogin"
               class="bg-primary"
@@ -43,7 +47,13 @@ const login = (data) => {
             </MainButton>
           </div>
           <div v-else class="absolute">
-            <LoginForm  @handleSubmit="login" />
+            <LoginForm v-if="formLogin" @handleSubmit="login" />
+            <form v-if="formRegister">
+              <input type="text" placeholder="Seu nome" />
+              <input type="email" placeholder="Seu email" />
+              <input type="password" placeholder="Sua senha" />
+              <button>Cadastrar</button>
+            </form>
           </div>
         </transition>
       </div>
