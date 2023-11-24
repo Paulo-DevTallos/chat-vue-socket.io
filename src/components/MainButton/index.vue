@@ -9,7 +9,11 @@ const handleForm = () => {
 </script>
 
 <template>
-  <button @click="handleForm">
+  <button @click="handleForm" class="main-button">
     <slot></slot>
   </button>
 </template>
+
+<style scoped>
+@import url("../../assets/components/button.styles.css");
+</style>
