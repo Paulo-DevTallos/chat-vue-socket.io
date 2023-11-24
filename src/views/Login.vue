@@ -15,8 +15,8 @@ const callFormRegister = () => {
   alert('Chamou o form de registro');
 };
 
-const login = () => {
-  alert('Fez o login');
+const login = (data) => {
+  console.log(data, 'Esses são os dados do login');
 };
 </script>
 
@@ -43,7 +43,7 @@ const login = () => {
             </MainButton>
           </div>
           <div v-else class="absolute">
-            <LoginForm />
+            <LoginForm  @handleSubmit="login" />
           </div>
         </transition>
       </div>
