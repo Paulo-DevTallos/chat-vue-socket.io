@@ -32,11 +32,15 @@ const callFormRegister = () => {
 const login = (data) => {
   console.log(data, 'Esses são os dados do login');
 };
+
+const register = (data) => {
+  console.log(data, 'Esses são os dados do registro');
+};
 </script>
 
 <template>
   <div class="container-login">
-    <div class="content text-center">
+    <div class="content text-center" :class="{ 'height-form-register': formRegister }">
       <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
       <h2 v-html="computedProperties.setWelcomeMessage"></h2>
@@ -58,7 +62,7 @@ const login = (data) => {
           </div>
           <div v-else class="absolute">
             <LoginForm v-if="formLogin" @handleSubmit="login" />
-            <RegisterForm v-if="formRegister" />
+            <RegisterForm v-if="formRegister" @handleCreateUser="register" />
           </div>
         </transition>
       </div>
@@ -94,6 +98,11 @@ const login = (data) => {
 
 .container-login .content #demo {
   position: relative;
+  margin: 20px 0 150px;
+}
+
+.height-form-register {
+  transition: all .2s ease-out;
   margin: 20px 0 120px;
 }
 
