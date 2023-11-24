@@ -9,6 +9,9 @@ module.exports = {
       backgroundColor: {
         'primary': '#004AAD',
         'grayslace': "#F9F9F9",
+      },
+      colors: {
+        'primary': '#004AAD',
       }
     },
   },
