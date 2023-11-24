@@ -1,6 +1,13 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import user_profile from '/img/user-empty-profile.jpg';
+import { ref } from 'vue';
+
+const profileCard = ref(false);
+
+const toggleProfileCard = () => {
+  profileCard.value = !profileCard.value;
+};
 </script>
 
 <template>
@@ -15,7 +22,10 @@ import user_profile from '/img/user-empty-profile.jpg';
         <figcaption class="text-primary w-9/12">
           Paulo Sérgio
         </figcaption>
-        <div class="action-icon float-left border-2 rounded p-3 text-xl">
+        <div
+          @click="toggleProfileCard"
+          class="action-icon float-left border-2 rounded p-3 text-xl"
+        >
           <Icon icon="ic:round-more-vert" />
         </div>
       </figure>
@@ -109,7 +119,7 @@ import user_profile from '/img/user-empty-profile.jpg';
         </div>
       </div>
     </div>
-    <div v-if="false" style="width: 30%;">
+    <div v-if="profileCard" style="width: 30%;">
       perfil do contato selecionado
     </div>
   </div>
