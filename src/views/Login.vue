@@ -1,9 +1,21 @@
 <script setup>
+import { ref } from "vue";
 import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
 
+const showFormLogin = ref(true);
+const showCommands = ref(true);
+
 const callFormLogin = () => {
-  alert('teste')
+  showFormLogin.value = !showFormLogin.value;
+};
+
+const callFormRegister = () => {
+  alert('Chamou o form de registro');
+};
+
+const login = () => {
+  alert('Fez o login');
 };
 </script>
 
@@ -13,8 +25,44 @@ const callFormLogin = () => {
       <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
       <h2>Faça login para continuar</h2>
-      <MainButton @handleForm="callFormLogin" class="bg-primary">Entrar</MainButton>
-      <MainButton class="bg-primary">Crie sua conta</MainButton>
+      <div id="demo" v-if="showCommands" class="relative -translate-y-1/2 ...">
+        <transition name="slide-fade">
+          <div v-if="showFormLogin" class="absolute w-full">
+            <MainButton
+              @handleForm="callFormLogin"
+              class="bg-primary"
+            >
+              Entrar
+            </MainButton>
+            <MainButton
+            @handleForm="callFormRegister"
+              class="bg-primary"
+            >
+              Crie sua conta
+            </MainButton>
+          </div>
+          <div v-else class="absolute">
+            <form>
+              <input
+                type="email"
+                placeholder="Digite seu E-mail"
+                class="w-full h-10 border pl-2 mb-2 rounded"
+              />
+              <input
+                type="password"
+                placeholder="Digite sua senha"
+                class="w-full h-10 border pl-2 mb-2 rounded"
+              />
+              <MainButton
+                @handleForm="login"
+                class="bg-primary"
+              >
+                Login
+              </MainButton>
+            </form>
+          </div>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +93,12 @@ const callFormLogin = () => {
   font-weight: normal;
 }
 
-.container-login .content button {
+.container-login .content #demo {
+  position: relative;
+  margin: 20px 0 120px;
+}
+
+.container-login .content #demo button {
   margin: 1.8rem 3px 0;
   padding: 0.5rem 1rem;
   border: 0;
@@ -54,5 +107,20 @@ const callFormLogin = () => {
   font-size: 1rem;
   font-weight: normal;
   cursor: pointer;
+}
+
+/** add animation to change resource in home view */
+.container-login .content #demo .slide-fade-enter-active {
+  transition: all .2s ease-out;
+}
+
+.container-login .content #demo .slide-fade-leave-active {
+  transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.container-login .content #demo .slide-fade-enter-from,
+.container-login .content #demo .slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
 }
 </style>
