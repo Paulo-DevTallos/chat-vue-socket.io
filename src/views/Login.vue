@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
 import LoginForm from "@/components/Forms/LoginForm.vue";
@@ -8,6 +8,15 @@ const showForm = ref(true);
 const formLogin = ref(false);
 const formRegister = ref(false);
 const showCommands = ref(true);
+
+const welcomeCommandMessageLogin = ref('Faça login para continuar');
+
+const computedProperties = computed(() => {
+  const handle = {
+    setWelcomeMessage: formRegister.value ? 'Crie sua conta para continuar' : welcomeCommandMessageLogin.value,
+  }
+  return handle;
+});
 
 const callFormLogin = () => {
   showForm.value = !showForm.value;
@@ -29,7 +38,7 @@ const login = (data) => {
     <div class="content text-center">
       <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
-      <h2>Faça login para continuar</h2>
+      <h2 v-html="computedProperties.setWelcomeMessage"></h2>
       <div id="demo" v-if="showCommands" class="relative -translate-y-1/2 ...">
         <transition name="slide-fade">
           <div v-if="showForm" class="absolute w-full">
