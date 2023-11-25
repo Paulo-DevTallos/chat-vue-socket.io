@@ -2,12 +2,12 @@
 import { ref, defineEmits } from "vue";
 import MainButton from "@/components/MainButton/index.vue";
 
-const emit = defineEmits(["handleSubmit"]);
-
 const formData = ref({
   email: "",
   password: "",
 });
+
+const emit = defineEmits(["handleSubmit"]);
 
 const handleSubmit = () => {
   emit("handleSubmit", formData.value);
