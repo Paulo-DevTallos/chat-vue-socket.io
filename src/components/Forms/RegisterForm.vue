@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineEmits } from 'vue';
+import BaseInput from '@/components/BaseInput/index.vue';
 import MainButton from '@/components/MainButton/index.vue';
 
 const registerData = ref({
@@ -17,23 +18,20 @@ const handleCreateUser = () => {
 
 <template>
   <form @submit.prevent="handleCreateUser">
-    <input
-      type="text"
-      placeholder="Insira seu nome"
+    <BaseInput
       v-model="registerData.name"
-      class="w-full h-10 border pl-2 mb-2 rounded"
+      :placeholder_msg="'Insira seu nome de usuário'"
+      class="mb-2"
     />
-    <input
-      type="email"
-      placeholder="Insira seu E-mail"
+    <BaseInput
       v-model="registerData.email"
-      class="w-full h-10 border pl-2 mb-2 rounded"
+      :placeholder_msg="'Insira seu melhor E-mail'"
+      class="mb-2"
     />
-    <input
-      type="password"
-      placeholder="Insira sua senha"
+    <BaseInput
       v-model="registerData.password"
-      class="w-full h-10 border pl-2 mb-2 rounded"
+      :hidePasswordRevealer="true"
+      :placeholder_msg="'Insira sua senha mais segura'"
     />
     <MainButton class="bg-primary">
       Cadastrar
