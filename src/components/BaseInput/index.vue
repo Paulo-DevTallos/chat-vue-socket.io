@@ -31,7 +31,7 @@ const togglePassword = () => {
 };
 
 const handleBlur = () => {
-  emit('update:modelValue', inputType.value);
+  emit('update:modelValue', inputValue.value);
 }
 </script>
 
