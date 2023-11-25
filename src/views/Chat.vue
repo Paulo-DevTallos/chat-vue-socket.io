@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import MainHeader from '@/components/MainHeader/index.vue';
+import ContactsList from '@/components/ContactsList/index.vue';
 import user_profile from '/img/user-empty-profile.jpg';
 
 const mainChatContent = ref(false);
@@ -39,62 +40,7 @@ const toggleProfileCard = () => {
           class="w-full h-10 border pl-2 rounded"
         />
       </div>
-      <ul class="contacts-list">
-        <li class="flex pl-6 py-3">
-          <div>
-            <img
-              :src="user_profile"
-              alt="Foto do contato"
-              class="rounded-full"
-            />
-          </div>
-          <div class="flex">
-            <div>
-              <h3>Nome do contato</h3>
-              <p>Última mensagem</p>
-            </div>
-            <div>
-              <p>10:35 AM</p>
-            </div>
-          </div>
-        </li>
-        <li class="flex pl-6 py-3">
-          <div>
-            <img
-              :src="user_profile"
-              alt="Foto do contato"
-              class="rounded-full"
-            />
-          </div>
-          <div class="flex">
-            <div>
-              <h3>Nome do contato</h3>
-              <p>Última mensagem</p>
-            </div>
-            <div>
-              <p>10:35 AM</p>
-            </div>
-          </div>
-        </li>
-        <li class="flex pl-6 py-3">
-          <div>
-            <img
-              :src="user_profile"
-              alt="Foto do contato"
-              class="rounded-full"
-            />
-          </div>
-          <div class="flex">
-            <div>
-              <h3>Nome do contato</h3>
-              <p>Última mensagem</p>
-            </div>
-            <div>
-              <p>10:35 AM</p>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <ContactsList />
     </aside>
     <div id="chat-content" class="w-3/4 flex">
       <div
@@ -103,11 +49,14 @@ const toggleProfileCard = () => {
       >
         <MainHeader />
         <div>
-          <div style="height: 75dvh; background-color: blue;">
+          <div style="height: 75dvh;">
             caixa de conversa
           </div>
           <div>
-            caixa de envio de mensagem
+            <textarea
+              class="border w-full h-full resize-none px-4 pt-2 overflow-hidden"
+              placeholder="Digite uma mensagem..."
+            ></textarea>
           </div>
         </div>
       </div>
@@ -142,10 +91,6 @@ img {
 figure figcaption {
   font-size: 1.3rem;
   font-weight: 700;
-}
-
-.contacts-list {
-  margin-top: 20px;
 }
 
 #chat-content .main-content {
