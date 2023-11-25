@@ -3,12 +3,15 @@ import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import MainHeader from '@/components/MainHeader/index.vue';
 import ContactsList from '@/components/ContactsList/index.vue';
+import BaseInput from '@/components/BaseInput/index.vue';
 import user_profile from '/img/user-empty-profile.jpg';
 import chatAnimation from '@/assets/lottie-animations/chat-animation.json';
 
 const mainChatContent = ref(false);
 const isModalActive = ref(false);
 const isConversationEmpty = ref(true);
+
+const search = ref('');
 
 const toggleProfileCard = () => {
   mainChatContent.value = !mainChatContent.value;
@@ -36,10 +39,9 @@ const toggleProfileCard = () => {
         </div>
       </figure>
       <div class="px-6 pb-5 border-b-2">
-        <input
-          type="text"
-          placeholder="Encontre um contato"
-          class="w-full h-10 border pl-2 rounded"
+        <BaseInput
+          v-model="search"
+          :placeholder_msg="'Pesquisar um contato'"
         />
       </div>
       <ContactsList />
@@ -48,13 +50,13 @@ const toggleProfileCard = () => {
       <div v-if="isConversationEmpty" class="w-full flex items-center justify-center">
         <div>
           <vue3-lottie
-          class="border-2 rounded-full border-transparent"
-          style="background-color: rgb(236, 245, 250);"
-          :animationData="chatAnimation"
-          :speed="1"
-          :height="300"
-          :width="300"
-        />
+            class="border-2 rounded-full border-transparent"
+            style="background-color: rgb(236, 245, 250);"
+            :animationData="chatAnimation"
+            :speed="1"
+            :height="300"
+            :width="300"
+          />
           <div class="text-center mb-5">
             <h1>Nenhuma conversa iniciada</h1>
             <small>Selecione um contato e inicie uma conversa</small>
