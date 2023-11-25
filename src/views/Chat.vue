@@ -4,9 +4,11 @@ import { Icon } from '@iconify/vue';
 import MainHeader from '@/components/MainHeader/index.vue';
 import ContactsList from '@/components/ContactsList/index.vue';
 import user_profile from '/img/user-empty-profile.jpg';
+import chatAnimation from '@/assets/lottie-animations/chat-animation.json';
 
 const mainChatContent = ref(false);
 const isModalActive = ref(false);
+const isConversationEmpty = ref(true);
 
 const toggleProfileCard = () => {
   mainChatContent.value = !mainChatContent.value;
@@ -43,7 +45,24 @@ const toggleProfileCard = () => {
       <ContactsList />
     </aside>
     <div id="chat-content" class="w-3/4 flex">
+      <div v-if="isConversationEmpty" class="w-full flex items-center justify-center">
+        <div>
+          <vue3-lottie
+          class="border-2 rounded-full border-transparent"
+          style="background-color: rgb(236, 245, 250);"
+          :animationData="chatAnimation"
+          :speed="1"
+          :height="300"
+          :width="300"
+        />
+          <div class="text-center mb-5">
+            <h1>Nenhuma conversa iniciada</h1>
+            <small>Selecione um contato e inicie uma conversa</small>
+          </div>
+        </div>
+      </div>
       <div
+        v-else
         class="main-content"
         :class="{ 'size_content': mainChatContent }"
       >
