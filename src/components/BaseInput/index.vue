@@ -9,10 +9,16 @@ const props = defineProps({
   placeholder_msg: {
     type: String,
   },
+  hidePasswordRevealer: {
+    type: Boolean,
+  }
 });
 
 const computedProps = {
   isPasswordVisible: computed(() => inputType.value === 'text'),
+  hidePasswordRevealer: computed(() => {
+    return !props.hidePasswordRevealer ? (inputType.value = 'text') : 'password';
+  }),
 };
 
 const togglePassword = () => {
@@ -25,11 +31,13 @@ const togglePassword = () => {
     <input
       v-bind="$attrs"
       :type="inputType"
+      v-if="computedProps.hidePasswordRevealer.value"
       :placeholder="placeholder_msg"
       class="set-input"
     />
     <PasswordRevealer
       @toggleRevealer="togglePassword"
+      v-if="props.hidePasswordRevealer"
       :is_password="computedProps.isPasswordVisible.value"
     />
   </div>
