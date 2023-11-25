@@ -13,6 +13,9 @@ module.exports = {
       colors: {
         'primary': '#004AAD',
       },
+      width: {
+        '200': '200px',
+      }
     },
   },
   plugins: [],
