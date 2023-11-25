@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import MainHeader from '@/components/MainHeader/index.vue';
+import user_profile from '/img/user-empty-profile.jpg';
 
 const mainChatContent = ref(false);
 const isModalActive = ref(false);
