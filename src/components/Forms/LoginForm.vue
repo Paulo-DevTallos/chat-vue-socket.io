@@ -1,6 +1,5 @@
 <script setup>
-import { ref } from "vue";
-import { defineEmits } from "vue";
+import { ref, defineEmits } from "vue";
 import MainButton from "@/components/MainButton/index.vue";
 
 const emit = defineEmits(["handleSubmit"]);
