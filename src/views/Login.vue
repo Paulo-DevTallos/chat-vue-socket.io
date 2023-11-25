@@ -62,7 +62,7 @@ const register = (data) => {
               Crie sua conta
             </MainButton>
           </div>
-          <div v-else class="absolute">
+          <div v-else class="absolute w-full">
             <LoginForm v-if="formLogin" @handleSubmit="login" />
             <RegisterForm v-if="formRegister" @handleCreateUser="register" />
           </div>
