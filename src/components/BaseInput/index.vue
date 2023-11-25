@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, defineProps } from 'vue';
+import { computed, ref, defineProps, defineEmits } from 'vue';
 import PasswordRevealer from '@/components/Icons/PasswordRevealer.vue';
 
 const inputType = ref('password');
@@ -11,8 +11,13 @@ const props = defineProps({
   },
   hidePasswordRevealer: {
     type: Boolean,
+  },
+  modelValue: {
+    type: String,
   }
 });
+
+const emit = defineEmits(['handleValue']);
 
 const computedProps = {
   isPasswordVisible: computed(() => inputType.value === 'text'),
@@ -24,6 +29,10 @@ const computedProps = {
 const togglePassword = () => {
   inputType.value = computedProps.isPasswordVisible.value ? 'password' : 'text';
 };
+
+const handleBlur = () => {
+  emit('update:modelValue', inputType.value);
+}
 </script>
 
 <template>
@@ -31,8 +40,10 @@ const togglePassword = () => {
     <input
       v-bind="$attrs"
       :type="inputType"
-      v-if="computedProps.hidePasswordRevealer.value"
       :placeholder="placeholder_msg"
+      v-if="computedProps.hidePasswordRevealer.value"
+      v-model="inputValue"
+      @blur="handleBlur"
       class="set-input"
     />
     <PasswordRevealer
