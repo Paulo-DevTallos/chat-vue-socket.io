@@ -1,17 +1,19 @@
 <script setup>
+import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import user_profile from '/img/user-empty-profile.jpg';
-import { ref } from 'vue';
 
-const profileCard = ref(false);
+const mainChatContent = ref(false);
+const isModalActive = ref(false);
 
 const toggleProfileCard = () => {
-  profileCard.value = !profileCard.value;
+  mainChatContent.value = !mainChatContent.value;
+  isModalActive.value = !isModalActive.value;
 };
 </script>
 
 <template>
-  <div class="w-full flex h-screen">
+  <div class="max-w-full flex h-screen">
     <aside class="bg-grayslace w-1/4">
       <figure class="flex items-center py-12 pl-6 h-16">
         <img
@@ -93,34 +95,44 @@ const toggleProfileCard = () => {
         </li>
       </ul>
     </aside>
-    <div class="w-3/4 px-6">
-      <header class="flex py-5 items-center border-b-4">
+    <div id="chat-content" class="w-3/4 flex">
+      <div
+        class="main-content"
+        :class="{ 'size_content': mainChatContent }"
+      >
+        <header class="flex py-5 items-center border-b-4">
+          <div>
+            <img
+              :src="user_profile"
+              alt="Foto do contato"
+              class="rounded-full"
+            />
+          </div>
+          <div class="title">
+            <h3>Nome do contato de uma conversa</h3>
+            <div id="status"></div>
+          </div>
+          <div>
+            Ações
+          </div>
+        </header>
         <div>
-          <img
-            :src="user_profile"
-            alt="Foto do contato"
-            class="rounded-full"
-          />
-        </div>
-        <div class="title">
-          <h3>Nome do contato de uma conversa</h3>
-          <div id="status"></div>
-        </div>
-        <div>
-          Ações
-        </div>
-      </header>
-      <div>
-        <div style="height: 75dvh; background-color: blue;">
-          caixa de conversa
-        </div>
-        <div>
-          caixa de envio de mensagem
+          <div style="height: 75dvh; background-color: blue;">
+            caixa de conversa
+          </div>
+          <div>
+            caixa de envio de mensagem
+          </div>
         </div>
       </div>
-    </div>
-    <div v-if="profileCard" style="width: 30%;">
-      perfil do contato selecionado
+      <div
+        class="card-profile bg-grayslace"
+        :class="{ 'is_active': isModalActive }"
+      >
+        <div class="p-6">
+          card do perfil do usuario
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -168,5 +180,28 @@ header .title #status {
   background: rgb(0, 206, 0);
   border-radius: 100%;
   margin-left: 10px;
+}
+
+#chat-content .main-content {
+  width: 100%;
+  padding: 0 1.25rem;
+  transition: width 0.3s ease-in-out;
+}
+
+#chat-content .card-profile {
+  box-shadow: -2px -2px 10px #00000045;
+  width: 0%;
+	height: 100vh;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+}
+
+#chat-content .card-profile.is_active {
+  width: 40%;
+  visibility: visible;
+  opacity: 1;
+}
+.size_content {
+  width: 70%;
 }
 </style>
