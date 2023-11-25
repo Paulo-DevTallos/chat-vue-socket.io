@@ -1,49 +1,70 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import logo from "/img/dev-chat.png";
 import MainButton from "@/components/MainButton/index.vue";
 import LoginForm from "@/components/Forms/LoginForm.vue";
+import RegisterForm from "@/components/Forms/RegisterForm.vue";
 
-const showFormLogin = ref(true);
+const showForm = ref(true);
+const formLogin = ref(false);
+const formRegister = ref(false);
 const showCommands = ref(true);
 
+const welcomeCommandMessageLogin = ref('Faça login para continuar');
+
+const computedProps = {
+  setWelcomeMessage: computed(() => {
+    if (formRegister.value) welcomeCommandMessageLogin.value = 'Crie sua conta para continuar';
+    return welcomeCommandMessageLogin.value;
+  }),
+};
+
 const callFormLogin = () => {
-  showFormLogin.value = !showFormLogin.value;
+  showForm.value = !showForm.value;
+  formLogin.value = !formLogin.value;
 };
 
 const callFormRegister = () => {
-  alert('Chamou o form de registro');
+  showForm.value = !showForm.value;
+  formRegister.value = !formRegister.value;
 };
 
 const login = (data) => {
   console.log(data, 'Esses são os dados do login');
 };
+
+const register = (data) => {
+  formLogin.value = !formLogin.value;
+  formRegister.value = !formRegister.value;
+  console.log(data, 'Esses são os dados do registro');
+};
 </script>
 
 <template>
   <div class="container-login">
-    <div class="content text-center">
+    <div class="content text-center" :class="{ 'height-form-register': formRegister }">
       <img :src="logo" alt="Logo DevChat" class="mx-auto" />
       <h1>Bem vindo ao ChatOn</h1>
-      <h2>Faça login para continuar</h2>
+      <h2>{{ computedProps.setWelcomeMessage.value }}</h2>
       <div id="demo" v-if="showCommands" class="relative -translate-y-1/2 ...">
         <transition name="slide-fade">
-          <div v-if="showFormLogin" class="absolute w-full">
+          <div v-if="showForm" class="absolute w-full">
             <MainButton
               @handleForm="callFormLogin"
-              class="bg-primary main-button"
+              class="bg-primary"
             >
               Entrar
             </MainButton>
             <MainButton
             @handleForm="callFormRegister"
-              class="bg-primary main-button"
+              class="bg-primary"
             >
               Crie sua conta
             </MainButton>
           </div>
-          <div v-else class="absolute">
-            <LoginForm  @handleSubmit="login" />
+          <div v-else class="absolute w-full">
+            <LoginForm v-if="formLogin" @handleSubmit="login" />
+            <RegisterForm v-if="formRegister" @handleCreateUser="register" />
           </div>
         </transition>
       </div>
@@ -52,7 +73,6 @@ const login = (data) => {
 </template>
 
 <style scoped>
-@import url('../assets/components/button.styles.css');
 .container-login {
   display: flex;
   justify-content: center;
@@ -80,6 +100,11 @@ const login = (data) => {
 
 .container-login .content #demo {
   position: relative;
+  margin: 20px 0 150px;
+}
+
+.height-form-register {
+  transition: all .2s ease-out;
   margin: 20px 0 120px;
 }
 

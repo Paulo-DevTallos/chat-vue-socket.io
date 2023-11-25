@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from "vue";
-import { defineEmits } from "vue";
+import { ref, defineEmits } from "vue";
+import BaseInput from "@/components/BaseInput/index.vue";
 import MainButton from "@/components/MainButton/index.vue";
-
-const emit = defineEmits(["handleSubmit"]);
 
 const formData = ref({
   email: "",
   password: "",
 });
+
+const emit = defineEmits(["handleSubmit"]);
 
 const handleSubmit = () => {
   emit("handleSubmit", formData.value);
@@ -18,24 +18,18 @@ const handleSubmit = () => {
 
 <template>
   <form @submit.prevent="handleSubmit">
-    <input
-      type="email"
-      placeholder="Digite seu E-mail"
+    <BaseInput
       v-model="formData.email"
-      class="w-full h-10 border pl-2 mb-2 rounded"
+      :placeholder_msg="'Digite seu E-mail'"
+      class="mb-2"
     />
-    <input
-      type="password"
-      placeholder="Digite sua senha"
+    <BaseInput
       v-model="formData.password"
-      class="w-full h-10 border pl-2 mb-2 rounded"
+      :hidePasswordRevealer="true"
+      :placeholder_msg="'Digite sua senha'"
     />
-    <MainButton class=" main-button bg-primary">
+    <MainButton class="bg-primary">
       Login
     </MainButton>
   </form>
 </template>
-
-<style scoped>
-@import url('../../assets/components/button.styles.css');
-</style>
