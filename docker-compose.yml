@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  front-chaton:
+    build: .
+    entrypoint: sh ./.docker/entrypoint.sh
+    container_name: front-chaton
+    volumes:
+      - .:/home/front-chat/app
+    working_dir: /home/front-chat/app
+    ports:
+      - 3010:3010
+    restart: always
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+networks:
+  chaton-network:
+    driver: bridge
