@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
+
 import MainHeader from '@/components/MainHeader/index.vue';
 import ContactsList from '@/components/ContactsList/index.vue';
 import BaseInput from '@/components/BaseInput/index.vue';
+import UserProfile from '@/components/Cards/UserProfile.vue';
+
 import user_profile from '/img/user-empty-profile.jpg';
 import chatAnimation from '@/assets/lottie-animations/chat-animation.json';
 
@@ -81,14 +84,8 @@ const toggleProfileCard = () => {
           </div>
         </div>
       </div>
-      <div
-        class="card-profile bg-grayslace"
-        :class="{ 'is_active': isModalActive }"
-      >
-        <div class="p-6">
-          card do perfil do usuario
-        </div>
-      </div>
+      <UserProfile :class="{ 'is_active': isModalActive }" />
+      <!-- Aqui tbm será adicionado um card de contatos com suas ações -->
     </div>
   </div>
 </template>
@@ -117,14 +114,6 @@ figure figcaption {
 #chat-content .main-content {
   width: 100%;
   padding: 0 1.25rem;
-  transition: width 0.3s ease-in-out;
-}
-
-#chat-content .card-profile {
-  box-shadow: -2px -2px 10px #00000045;
-  width: 0%;
-	height: 100vh;
-  overflow: hidden;
   transition: width 0.3s ease-in-out;
 }
 
