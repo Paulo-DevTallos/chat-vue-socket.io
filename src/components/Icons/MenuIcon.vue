@@ -1,18 +1,27 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 
+const props = defineProps({
+  icon: {
+    type: String,
+  },
+  command_name: {
+    type: String,
+  },
+});
+
 const eventoDeClick = () => {
-  alert('Evento de click');
+  alert(props.command_name);
 };
 </script>
 
 <template>
   <div
-    title="Editar perfil"
+    :title="props.command_name"
     @click="eventoDeClick"
     class="icon-menu border-2"
   >
-    <Icon icon="ic:outline-edit" />
+    <Icon :icon="`ic:${props.icon}`" />
   </div>
 </template>
 
