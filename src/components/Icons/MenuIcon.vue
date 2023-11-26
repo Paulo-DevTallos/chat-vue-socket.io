@@ -8,17 +8,22 @@ const props = defineProps({
   command_name: {
     type: String,
   },
+  command_action: {
+    type: String,
+  },
 });
 
-const eventoDeClick = () => {
-  alert(props.command_name);
+const emit = defineEmits(['triggedButton']);
+
+const triggedButton = () => {
+  emit('triggedButton', props.command_action);
 };
 </script>
 
 <template>
   <div
     :title="props.command_name"
-    @click="eventoDeClick"
+    @click="triggedButton"
     class="icon-menu border-2"
   >
     <Icon :icon="`ic:${props.icon}`" />
