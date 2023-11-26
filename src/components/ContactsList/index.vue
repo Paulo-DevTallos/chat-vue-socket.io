@@ -1,26 +1,27 @@
 <script setup>
 import { ref } from 'vue';
+import { truncate } from '@/helpers/global';
 import user_profile from '/img/user-empty-profile.jpg';
 
 const listContacts = ref([
   {
     id: 1,
     name: 'Guilherme Martins',
-    last_message: 'Última mensagem env...',
+    last_message: 'Última mensagem enviada por esse usuário',
     time: '9:45 AM',
     user_profile,
   },
   {
     id: 2,
     name: 'Aldo Souza',
-    last_message: 'Última mensagem',
+    last_message: 'Última mensagem enviada por esse usuário',
     time: '10:23 AM',
     user_profile,
   },
   {
     id: 3,
     name: 'Luiz Brito',
-    last_message: 'Última mensagem',
+    last_message: 'Última mensagem enviada por esse usuário',
     time: '10:35 AM',
     user_profile,
   },
@@ -47,7 +48,7 @@ const listContacts = ref([
             {{ contact.name }}
           </h3>
           <p class="text-slate-500 leading-4 text-sm font-medium">
-            {{ contact.last_message }}
+            {{ truncate(contact.last_message, 19) }}
           </p>
         </div>
         <div style="width: 20%;" class="text-right">
