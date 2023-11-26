@@ -1,14 +1,27 @@
 <script setup>
-import { onMounted } from 'vue';
 import MenuIcon from '../Icons/MenuIcon.vue';
 
 import user_profile from '/img/user-empty-profile.jpg';
 import profileActions from '../../configs/profile-actions';
 
-
-onMounted(() => {
-  console.log(typeof profileActions)
-})
+const actionMenu = (action) => {
+  switch(action) {
+    case 'Evento 1':
+      console.log(context.root)
+      break;
+    case 'Evento 2':
+      alert('click para Evento 2');
+      break;
+    case 'Evento 3':
+      alert('click para Evento 3');
+      break;
+    case 'Evento 4':
+      alert('click para Evento 4');
+      break;
+    default:
+      break;
+  }
+};
 </script>
 
 <template>
@@ -23,19 +36,18 @@ onMounted(() => {
           <span class="text-slate-500 font-normal text-lg">Meu cargo</span>
         </figcaption>
       </figure>
-      <div>
-        <nav class="mt-6">
-          <h3 class="pb-6 text-slate-500">Ações do usuário</h3>
-          <ul class="flex justify-between">
-            <li v-for="command in profileActions" :key="command.id">
-              <MenuIcon
-                :icon="command.icon"
-                :command_name="command.name"
-              />
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <nav class="mt-6">
+        <h3 class="pb-6 text-slate-500">Ações do usuário</h3>
+        <ul class="flex justify-between">
+          <li v-for="command in profileActions" :key="command.id">
+            <MenuIcon
+              :icon="command.icon"
+              :command_name="command.name"
+              @triggedButton="actionMenu(command.action)"
+            />
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </template>
