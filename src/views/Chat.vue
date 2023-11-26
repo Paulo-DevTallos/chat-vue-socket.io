@@ -56,6 +56,7 @@ const toggleProfileCard = () => {
             class="border-2 rounded-full border-transparent"
             style="background-color: rgb(236, 245, 250);"
             :animationData="chatAnimation"
+            :loop="false"
             :speed="1"
             :height="300"
             :width="300"
